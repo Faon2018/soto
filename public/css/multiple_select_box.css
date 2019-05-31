@@ -1,0 +1,25 @@
+   .layui-multiple-box {
+        border: 1px solid #eaeaea;
+        padding: 20px;
+        /*padding-left: 20px;*/
+        padding-bottom: 0;
+        position: absolute;
+        background: white;
+        z-index: 2;
+       text-align: left!important;
+        /*margin-top: 20px;*/
+
+    }
+    .layui-multiple-box-row{
+        padding: 5px 0;
+        display: block;
+        text-align: left;
+        white-space: nowrap;
+    }
+    .layui-multiple-box-item{
+        text-align: left;
+    }
+    .layui-multiple-box-footer{
+        text-align: center;
+        margin-left: -10px;
+    }

@@ -1,0 +1,447 @@
+<{extends 'public/base.html'}>
+<{block name=title}>
+品牌、型号添加
+<{/block}>
+<{block name=static}>
+<link rel="stylesheet" type="text/css" href="/css/multiple_select.css">
+<link rel="stylesheet" type="text/css" href="/css/jquery_ex.css">
+<script ></script>
+<style type="text/css">
+    .layui-upload-img{width: 92px; height: 92px; overflow: hidden; }
+    .img_view{width: 92px; height: 92px;margin: 0 10px 10px 0;border: 1px solid #009688;cursor: pointer;display: inline-block;position: relative}
+    .close_img{position: absolute;width: 25px;height: 25px;top: 0;right:0;display: inline-block;background: #009688;}
+    .btn-wrap{float: left;display: block;padding: 3px 0px;width: 120px;font-weight: 400;line-height: 20px;text-align: right;}
+    .port-info-wrap .layui-form-label{width: auto;}
+    .port-info-wrap .layui-input-inline.num{width: 130px;}
+    .dashboard > h3 {
+        font-weight: bold;
+        font-size: 14px;
+    }
+    .frame_position {
+        width: 290px;
+        height: auto;
+        float: left;
+    }
+    .frame_pdu {
+        width: auto;
+        height: auto;
+        background: #333;
+        float: left;
+        padding-right: 10px;
+    }
+
+    .frame_pdu ul.number {
+        width: 25px;
+        height: auto;
+        background: #333;
+        float: left;
+        display: inline-block;
+        padding: 10px 0px 10px 10px;
+    }
+
+    .frame_pdu ul.number li {
+        width: 25px;
+        height: 25px;
+        background: #fff;
+        margin: 5px 0;
+        text-align: center;
+        line-height: 25px;
+        color: #000;
+        font-size: 10px;
+        font-weight: normal;
+        cursor: pointer;
+    }
+
+    .frame_pdu ul li.used {
+        cursor: default;
+        background: #01AAED;
+    }
+    .frame_pdu ul li.owner {
+        /*cursor: default;*/
+        background: #ffeb3b;
+    }
+    .frame_pdu ul li.selectd {
+        background: #5FB878!important;
+    }
+
+
+    .frame_position ul.number {
+        width: 15px;
+        height: auto;
+        background: #333;
+        float: left;
+        display: inline-block;
+        padding: 10px 0px 10px 10px;
+    }
+
+    .frame_position ul li a {
+        color: white;
+    }
+
+    .frame_position ul.number li {
+        width: 15px;
+        height: 15px;
+        background: #009688;
+        margin: 1px 0;
+        text-align: center;
+        line-height: 15px;
+        color: white;
+        font-size: 10px;
+        font-weight: normal;
+    }
+
+    .frame_position ul.position {
+        width: 250px;
+        height: auto;
+        background: #333;
+        padding: 10px 10px 10px 2px;
+        float: left;
+        display: inline-block;
+    }
+
+    .frame_position ul.position li {
+        width: 250px;
+        height: 15px;
+        background: #fff;
+        margin: 1px 0;
+        text-align: center;
+        line-height: 15px;
+        color: black;
+        font-weight: normal;
+        cursor: pointer;
+    }
+
+    .frame_position ul.position li.used {
+        cursor: default;
+    }
+
+    ul.position li.class_style_0 {
+        background: #fff;
+    }
+
+    ul.position li.class_style_1 {
+        background: #5FB878!important;
+    }
+
+    ul.position li.class_style_2 {
+        background: #999;
+    }
+
+    ul.position li.class_style_3 {
+        background: #01AAED;
+    }
+    ul.position li.class_style_4 {
+        background: #FF5722;
+    }
+    ul.position li.class_style_3.owner {
+        background: #ffeb3b;
+    }
+
+    ul.position li.height_2 {
+        height: 31px;
+        line-height: 31px;
+    }
+
+    ul.position li.height_3 {
+        height: 47px;
+        line-height: 47px;
+    }
+
+    ul.position li.height_4 {
+        height: 63px;
+        line-height: 63px;
+    }
+
+    ul.position li.height_5 {
+        height: 79px;
+        line-height: 79px;
+    }
+
+    ul.position li.height_6 {
+        height: 95px;
+        line-height: 95px;
+    }
+
+    ul.position li.height_7 {
+        height: 111px;
+        line-height: 111px;
+    }
+
+    ul.position li.height_8 {
+        height: 127px;
+        line-height: 127px;
+    }
+
+    ul.position li.height_9 {
+        height: 143px;
+        line-height: 143px;
+    }
+
+    ul.position li.height_10 {
+        height: 159px;
+        line-height: 159px;
+    }
+    .layui-table-view .layui-table[lay-size=sm] .layui-table-cell{width: 113px;}
+    .reset{margin: 10px 10px 0px 10px; }
+    .pos-wrap{font-size: 0;line-height: 0;padding: 10px 0}
+    .pos-wrap >p{display: inline-block;font-size: 12px;line-height: 1.5;margin-right: 15px;}
+    .pos-wrap >p>span{width: 10px;height: 10px;display: inline-block;margin: 0 5px 0 0;border: 1px solid #000}
+    .pos-wrap >p>span.white{background: white}
+    .pos-wrap >p>span.gray{background: #999}
+    .pos-wrap >p>span.blue{background: #01AAED}
+    .pos-wrap >p>span.orange{background: #FF5722}
+    .pos-wrap >p>span.yellow{background: #FFEB3B}
+    .pos-wrap >p>span.selected{background: #5FB878}
+    .port_type{border-left-width: 55px;margin-left: 122px}
+    .layui-card-body >.layui-form >#hide{display: none}
+    .layui-card-body >.layui-form >#unhide{display: inline-block}
+</style>
+<{/block}>
+<{block name=body}>
+<{if check_auth('/brand/add/')}>
+<div class="layui-fluid">
+    <div class="layui-card">
+        <{include file='public/nav.html'}>
+        <div class="layui-card-body">
+            <form class="layui-form" id="form" action="" onsubmit="return false;">
+                <input type="hidden" id="record_id" name="record_id" value="<{$editInfo.id}>">
+
+
+                <fieldset class="layui-elem-field layui-field-title" >
+                    <legend style="font-size: 14px;font-weight: bold">基本信息</legend>
+                </fieldset>
+
+                <div class="layui-form-item layui-inline">
+                    <label for="name" class="layui-form-label">名称*：</label>
+                     <div class="layui-input-inline">
+                    <input type="text" name="name" id="name"  lay-verify="required"  placeholder="请输入名称" autocomplete="off"  class="layui-input" value="<{$editInfo['name']}>">
+                     </div>
+               </div>
+
+                <div class="layui-form-item layui-inline">
+                    <label for="parent_id" class="layui-form-label">类别*：</label>
+                    <div class="layui-input-inline">
+                        <select name="parent_id" id="parent_id"  lay-filter='parent_id'  lay-search>
+                        <option value="">请选择添加类别</option>
+                        <{foreach json_decode($categorys) as $c}>
+                        <{if $editInfo.parent_id eq $c}>
+                        <option selected value="<{$c}>" data-id="<{$c}>"><{$c}></option>
+                        <{else}>
+                        <option value="<{$c}>" data-id="<{$c}>"><{$c}></option>
+                        <{/if}>
+                        <{/foreach}>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="layui-form-item layui-inline">
+                    <label for="type" class="layui-form-label">设备归属：</label>
+                    <div class="layui-input-inline">
+                        <select name="type" id="type"  lay-filter='type' lay-search>
+                            <option value="">请选择设备归属</option>
+                            <{foreach $type as $c}>
+                            <{if $editInfo.type eq $c}>
+                            <option selected value="<{$editInfo.type}>"><{$editInfo.type}></option>
+                            <{else}>
+                            <option value="<{$c}>"><{$c}></option>
+                            <{/if}>
+                            <{/foreach}>
+                        </select>
+                    </div>
+                </div>
+
+                <{if $editInfo.brand_name eq null }>
+                <div class="layui-form-item layui-inline " id="hide">
+                    <label for="brand_name" class="layui-form-label">品牌归属：</label>
+                    <div class="layui-input-inline">
+                        <select name="brand_name" id="brand_name"  lay-filter='brand_name' lay-search>
+                            <option value="">请选择品牌</option>
+                            <{foreach $brands as $c}>
+                            <{if $editInfo.brand_name eq $c}>
+                            <option selected value="<{$c}>" data-id="<{$c}>"><{$c}></option>
+                            <{else}>
+                            <option value="<{$c}>" data-id="<{$c}>"><{$c}></option>
+                            <{/if}>
+                            <{/foreach}>
+                        </select>
+                    </div>
+                </div>
+                <{else}>
+                <div class="layui-form-item layui-inline " id="unhide" >
+                    <label for="brand_name" class="layui-form-label">品牌归属：</label>
+                    <div class="layui-input-inline">
+                        <select name="brand_name" id="brand_name"  lay-filter='brand_name' lay-search>
+                            <option value="">请选择品牌归属</option>
+                            <{foreach $brands as $c}>
+                            <{if $editInfo.brand_name eq $c}>
+                            <option selected value="<{$c}>" data-id="<{$c}>"><{$c}></option>
+                            <{else}>
+                            <option value="<{$c}>" data-id="<{$c}>"><{$c}></option>
+                            <{/if}>
+                            <{/foreach}>
+                        </select>
+                    </div>
+                </div>
+                <{/if}>
+
+
+
+                <p style="margin-left: 30px">注意：时间后台自动统计。</p>
+                <div class="layui-form-item" style="text-align: center;padding-top: 50px;">
+                    <div class="layui-inline">
+                        <button lay-submit lay-filter="room" class="layui-btn">保存</button>
+                        <{if $editInfo.id>0}>
+                        <!-- <button type="reset" class="layui-btn layui-btn-primary">重置</button> -->
+                        <{else}>
+                        <button id="btn-reset" type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        <{/if}>
+                        <button type="button" class="layui-btn" id="goBack">
+                            <i class="layui-icon">&#xe65c;</i>
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+<{/if}>
+
+<{/block}>
+<{block name=script}>
+<script>
+
+    layui.use(['laytpl','layer','form','comm','element','cus_jquery_ex','upload','laydate'], function(){
+        var $ = layui.$,element = layui.element,form = layui.form,
+            comm = layui.comm,upload=layui.upload,layer=layui.layer,
+            laydate =layui.laydate;
+
+
+        var laytpl =layui.laytpl;
+        var $submitBtn = null;
+        var postAction ='<{$postAction}>';
+        /**
+         select联动交互
+         * */
+        form.on('select(type)', function(data){
+            var areaId=(data.value);
+            $.ajax({
+                type: 'POST',
+                //type: 'GET',
+                url: '/brand/findBrand/',
+                data: {parent_id:areaId},
+                dataType:  'json',
+                success: function(data){
+                    $("#brand_name").html("");
+                    var option = $("<option>").val('').text('请选择品牌归属');
+                    $("#brand_name").append(option);
+                    $.each(data, function(key, val) {
+                        var option1 = $("<option>").val(val.brand_name).text(val.brand_name);
+                        $("#brand_name").append(option1);
+                        form.render('select');
+                    });
+                    $("#brand_name").get(0).selectedIndex=0;
+                }
+            });
+        });
+
+        /**
+         *控制归属品牌的显示与隐藏
+         */
+        var category=`<{$categorys}>`;//获取型号、品牌字符串
+        category=JSON.parse(category);//转换成数组
+          $('form').focusout(function() {
+              var cur=$('#parent_id').val();
+              if (cur===category[1]){
+                  $('#hide').css({'display':'inline-block'});
+                  $('#unhide').css({'display':'inline-block'});
+              }else{
+                  $('#hide').css({'display':'none'});
+                  $('#unhide').css({'display':'none'});
+              }
+          });
+
+        /**
+         * 时间控件
+         */
+        laydate.render({
+            elem: '#receiveTime',
+            type: 'date'
+        });
+        laydate.render({
+            elem: '#onSaleTime',
+            type: 'date'
+        });
+
+        var getIndex=function(_v,_ary){
+            for(var i=0;i<_ary.length;i++){
+                if(_v===_ary[i]){
+                    return i;
+                }
+            }
+        }
+        var uploadPreview=function(){
+            if(regPhotosFlag){
+
+                layer.photos({
+                    photos:'#preview',
+                    anim: 5
+                });
+                regPhotosFlag =false;
+            }
+        }
+
+        var formReset=function(){
+            var form = $('#btn-reset').parents("form");
+            $(form)[0].reset();
+            $('#hide').css({'display':'none'});
+
+        }
+
+
+        /**
+         * 数据提交
+         */
+        form.on('submit(room)',function(_data){
+            if($submitBtn&&$submitBtn.isLoadding()){
+                return false;
+            }
+            if(null===$submitBtn)
+            {
+                $submitBtn=$(_data.elem).btnLoading();
+            }
+
+            var data= _data.field;
+
+
+            var $form =$($(_data.elem).parents('form'));
+            $submitBtn.open();
+
+            comm.ajax_post(postAction,data,function(_cbData){
+                comm.msg_ok(_cbData.data,function () {
+                    if(_cbData.resetForm){
+                        formReset();
+                    }
+                    if(_cbData.reload){
+                        window.location.href =window.location.href ;
+                    }
+                });
+
+            },function(_cbData){
+                comm.msg_error(_cbData.msg);
+            },function(){
+                $submitBtn.close();
+            });
+        });
+        $("#btn-reset").on("click",function(){
+            formReset();
+        });
+        $('#goBack').on('click', function(){
+            history.go(-1);
+        });
+
+
+    });
+</script>
+<{/block}>
+

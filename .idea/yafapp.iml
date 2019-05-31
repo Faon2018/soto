@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$" />
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="work" />
+    <orderEntry type="module" module-name="ws-cmdb" />
+    <orderEntry type="module" module-name="sss" />
+    <orderEntry type="module" module-name="ws-cmdb" />
+    <orderEntry type="module" module-name="application" />
+    <orderEntry type="module" module-name="work" />
+    <orderEntry type="module" module-name="ws-cmdb" />
+    <orderEntry type="module" module-name="tp5" />
+  </component>
+</module>

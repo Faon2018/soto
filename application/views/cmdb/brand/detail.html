@@ -1,0 +1,145 @@
+<{extends 'public/base.html'}>
+
+<{block name=title}>品牌详情页<{/block}>
+
+<{block name=static}>
+<style type="text/css">
+.fields-wrap span{
+	display: block;
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 2%;
+    overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.fields-wrap span:first-child{
+	text-align: right;
+	width: 25%;
+	font-weight: bold;
+}
+.fields-wrap span:nth-child(2){
+    border-bottom: 1px #c3c3c3 dashed;
+    width: 50%;
+}
+.fields-wrap2 span{
+	font-weight: bold;
+	display: block;
+    float: left;
+    line-height: 30px;
+	word-wrap:break-word;
+	padding: 0 10px;
+}
+.fields-wrap2 span:first-child{
+	width: 6%;
+	display: block;
+	text-align: right;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.fields-wrap2 span img{
+	float: left;
+	padding: 0 10px;
+}
+.legend-wrap{
+	font-size: 18px;
+	font-weight: bold;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+
+</style>
+<{/block}>
+
+<{block name=body}>
+<div class="layui-fluid">
+	<div class="layadmin-content">
+		<div class="layui-tab layui-tab-card" lay-filter="room-tab">
+			<ul class="layui-tab-title">
+				<li class="layui-this">品牌详情</li>
+			</ul>
+			<div class="layui-tab-content">
+				<div class="layui-tab-item layui-show">
+					<div class="layui-row layui-col-space20">
+		            	<fieldset class="layui-elem-field layui-field-title legend-wrap" >
+		                    <legend class="">基本信息</legend>
+		                </fieldset>
+		                <{foreach from=$listOne[0] key=$key item=$rs}>
+                      	<div class="layui-col-md3 layui-col-sm3 fields-wrap">
+							<span ><{$key}></span>
+							<span ><{$rs}></span>
+						</div>
+                        <{/foreach}>
+					</div>
+
+					<div class="layui-row layui-col-space20">
+						<div class="layui-col-md12 layui-col-sm12" style="text-align: center;margin: 3px 0;">
+							<a type="button" class="layui-btn layui-btn-normal" href="/brand/index/"><i class="layui-icon layui-icon-return"></i>返回搜索页</a>
+							<button type="button" class="layui-btn" onclick="javascript:location.href='/brand/edit/?id=<{$listOne[0].$id}>';">编辑</button>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<{/block}>
+
+<{block name=script}>
+<script>
+layui.use(['element','comm','table','layer'],function () {
+	var element=layui.element,
+		comm=layui.comm,
+		table=layui.table,
+		$=layui.jquery;
+	var $preview =$('#preview');
+
+  	/**
+  	 * 自动响应iframe高度的处理
+  	 * @type {Number}
+  	 */
+	
+	var changeFrameHeight=function (_h){
+		
+		
+		if(_h===lastH){
+			return ;
+		}
+		
+		$iframe.css('height',_h+"px");
+
+		
+		lastH=_h;
+	}
+	var initIframe=function(){
+		$iframe.on('load',function(){
+			
+			var $me =$(this);
+			var $contents=$me.contents();
+			$contents.find("body").css({
+				'background-color':'#fff',
+				'overflow':'hidden',
+			});
+			var tid=null;
+		    $table =$contents.find(".layadmin-content");
+		   	
+		    
+		    tid =setInterval(function(){
+		    	changeFrameHeight($table.innerHeight());
+		        
+		    },150);
+			
+
+		});
+	}
+	
+	
+
+	
+});
+</script>
+<{/block}>
