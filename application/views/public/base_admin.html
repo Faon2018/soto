@@ -5,10 +5,10 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title><{block name=title}>模板<{/block}></title>
+    <title><{block name=title}>后台模板<{/block}></title>
     <link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all">
     <link rel="stylesheet" href="/css/admin.css" media="all">
-
+    <link rel="stylesheet" type="text/css" href="/node_modules/bootstrap/dist/css/bootstrap.css">
     <!-- static files -->
     <{block name=static}><{/block}>
 </head>
@@ -51,56 +51,7 @@
         </div>
     </div>
     <{/block}>
-    <script src="/layuiadmin/layui/layui.js"></script>
     <script src="/js/lib/vue.js"></script>
-    <script>
-        layui.config({
-            base: '/' //静态资源所在路径
-        }).extend({
-            /**
-             * 建议模块名称加个cus_前缀区分框架自身的还是自定义的
-             * 例如： cus_echarts
-             */
-            comm: 'layuiadmin/lib/comm',//配置comm模块的路径
-            cus_echarts:'js/lib/echarts_for_layui',
-            cus_echarts_world:'js/lib/world',
-            cus_tools: 'js/comm/cus_tools.js?v=1',
-            cus_jquery_ex: 'js/comm/cus_jquery_ex',
-            cus_jStore:'js/lib/json2_jstorage_forlayui.min',
-            formSelects: 'layuiadmin/layui/lay/modules/formSelects-v4'
-        });
-    </script>
-    <script type="text/javascript">
-        layui.use('element', function(){
-            var $ = layui.$;
-            //iframe页面f5刷新
-            $(document).on('keydown', function (event) {
-                var e = window.event || event;
-                if (e.keyCode == 116) {
-                    e.keyCode = 0;
-                    var $doc = $(parent.window.document),
-                            id = $doc.find('#B_history .current').attr('data-id'),
-                            iframe = $doc.find('#iframe_' + id);
-                    try{
-                        if (iframe,length>0&&iframe[0].contentWindow) {
-                            //common.js
-                            reloadPage(iframe[0].contentWindow);
-                        }else{
-                            location.reload();
-                        }
-                    }catch(err){}
-                    //!ie
-                    return false;
-                }
-
-            });
-            //重新刷新页面，使用location.reload()有可能导致重新提交
-            function reloadPage(win) {
-                var location = win.location;
-                location.href = location.pathname + location.search;
-            }
-        });
-    </script>
     <{block name=script}><{/block}>
 </body>
 </html>

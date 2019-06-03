@@ -1,3 +1,27 @@
+<?php
+/* Smarty version 3.1.30, created on 2019-06-03 03:50:32
+  from "D:\www\yafapp\soto\application\views\index\index.html" */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '3.1.30',
+  'unifunc' => 'content_5cf49908ec6ee1_76135201',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    'a14f690a6c67894ce3ab0ac43120e0b46a0ce294' => 
+    array (
+      0 => 'D:\\www\\yafapp\\soto\\application\\views\\index\\index.html',
+      1 => 1559533827,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_5cf49908ec6ee1_76135201 (Smarty_Internal_Template $_smarty_tpl) {
+?>
 <!DOCTYPE>
 <html>
 <head>
@@ -40,5 +64,8 @@
 
 
 </body>
-<script src="/js/comm/jquery.min.js"></script>
-</html>
+<?php echo '<script'; ?>
+ src="/js/comm/jquery.min.js"><?php echo '</script'; ?>
+>
+</html><?php }
+}
