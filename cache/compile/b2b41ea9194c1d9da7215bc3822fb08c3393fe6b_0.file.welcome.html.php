@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2019-06-03 06:27:52
+/* Smarty version 3.1.30, created on 2019-06-04 04:28:10
   from "D:\www\yafapp\soto\application\views\admin\index\welcome.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5cf4bde8373ba9_03712070',
+  'unifunc' => 'content_5cf5f35ac5f0b4_86822094',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b2b41ea9194c1d9da7215bc3822fb08c3393fe6b' => 
     array (
       0 => 'D:\\www\\yafapp\\soto\\application\\views\\admin\\index\\welcome.html',
-      1 => 1559543261,
+      1 => 1559622486,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5cf4bde8373ba9_03712070 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5cf5f35ac5f0b4_86822094 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html>
@@ -117,7 +117,6 @@ function content_5cf4bde8373ba9_03712070 (Smarty_Internal_Template $_smarty_tpl)
 						<div class="panel-body">
 							<div class="commentbox">
 								<ul class="commentList">
-								  <li class="item cl"> <a href="#"><i class="avatar size-L radius"><img alt="" src="http://static.h-ui.net/h-ui/images/ucnter/avatar-default.jpg"></i></a>
 								    <div class="comment-main">
 								      <header class="comment-header">
 								        <div class="comment-meta"><a class="comment-author" href="#">慕枫</a> 评论于
@@ -129,7 +128,6 @@ function content_5cf4bde8373ba9_03712070 (Smarty_Internal_Template $_smarty_tpl)
 								      </div>
 								    </div>
 								  </li>
-								  <li class="item cl"> <a href="#"><i class="avatar size-L radius"><img alt="" src="http://static.h-ui.net/h-ui/images/ucnter/avatar-default.jpg"></i></a>
 								    <div class="comment-main">
 								      <header class="comment-header">
 								        <div class="comment-meta"><a class="comment-author" href="#">慕枫</a> 评论于
@@ -141,7 +139,6 @@ function content_5cf4bde8373ba9_03712070 (Smarty_Internal_Template $_smarty_tpl)
 								      </div>
 								    </div>
 								  </li>
-								   <li class="item cl"> <a href="#"><i class="avatar size-L radius"><img alt="" src="http://static.h-ui.net/h-ui/images/ucnter/avatar-default.jpg"></i></a>
 								    <div class="comment-main">
 								      <header class="comment-header">
 								        <div class="comment-meta"><a class="comment-author" href="#">慕枫</a> 评论于
@@ -153,7 +150,6 @@ function content_5cf4bde8373ba9_03712070 (Smarty_Internal_Template $_smarty_tpl)
 								      </div>
 								    </div>
 								  </li>
-								  <li class="item cl"> <a href="#"><i class="avatar size-L radius"><img alt="" src="http://static.h-ui.net/h-ui/images/ucnter/avatar-default.jpg"></i></a>
 								    <div class="comment-main">
 								      <header class="comment-header">
 								        <div class="comment-meta"><a class="comment-author" href="#">慕枫</a> 评论于
@@ -183,143 +179,6 @@ function content_5cf4bde8373ba9_03712070 (Smarty_Internal_Template $_smarty_tpl)
 				</div>
 			</div>
 		</div>
-		<?php echo '<script'; ?>
- src="/layuiadmin/layui/layui.js" type="text/javascript" charset="utf-8"><?php echo '</script'; ?>
->
-		<?php echo '<script'; ?>
- src="/admin/js/extend/echarts.js"><?php echo '</script'; ?>
->
-		<?php echo '<script'; ?>
- type="text/javascript">
-			layui.use(['layer','jquery'], function(){
-				var layer 	= layui.layer;
-				var $=layui.jquery;
-				//图表
-				var myChart;
-				require.config({
-				    paths: {
-				        echarts: '/admin/js/extend'
-				    }
-				});
-				require(
-				    [
-				        'echarts',
-				        'extend/chart/bar',
-				        'extend/chart/line',
-				        'extend/chart/map'
-				    ],
-				    function (ec) {
-				        //--- 折柱 ---
-				        myChart = ec.init(document.getElementById('chart'));
-				        myChart.setOption(
-				        	{
-						     title: {
-						        text: "数据统计",
-						        textStyle: {
-						            color: "rgb(85, 85, 85)",
-						            fontSize: 18,
-						            fontStyle: "normal",
-						            fontWeight: "normal"
-						        }
-						    },
-						    tooltip: {
-						        trigger: "axis"
-						    },
-						    legend: {
-						        data: ["会员", "文章", "评论"],
-						        selectedMode: false,
-						    },
-						    toolbox: {
-						        show: true,
-						        feature: {
-						            dataView: {
-						                show: false,
-						                readOnly: true
-						            },
-						            magicType: {
-						                show: false,
-						                type: ["line", "bar", "stack", "tiled"]
-						            },
-						            restore: {
-						                show: true
-						            },
-						            saveAsImage: {
-						                show: true
-						            },
-						            mark: {
-						                show: false
-						            }
-						        }
-						    },
-						    calculable: false,
-						    xAxis: [
-						        {
-						            type: "category",
-						            boundaryGap: false,
-						            data: ["周一", "周二", "周三", "周四", "周五", "周六", "周日"]
-						        }
-						    ],
-						    yAxis: [
-						        {
-						            type: "value"
-						        }
-						    ],
-						     grid: {
-						        x2: 30,
-						        x: 50
-						    },
-						    series: [
-						        {
-						            name: "会员",
-						            type: "line",
-						            smooth: true,
-						            itemStyle: {
-						                normal: {
-						                    areaStyle: {
-						                        type: "default"
-						                    }
-						                }
-						            },
-						            data: [10, 12, 21, 54, 260, 830, 710]
-						        },
-						        {
-						            name: "文章",
-						            type: "line",
-						            smooth: true,
-						            itemStyle: {
-						                normal: {
-						                    areaStyle: {
-						                        type: "default"
-						                    }
-						                }
-						            },
-						            data: [30, 182, 434, 791, 390, 30, 10]
-						        },
-						        {
-						            name: "评论",
-						            type: "line",
-						            smooth: true,
-						            itemStyle: {
-						                normal: {
-						                    areaStyle: {
-						                        type: "default"
-						                    },
-						                    color: "rgb(110, 211, 199)"
-						                }
-						            },
-						            data: [1320, 1132, 601, 234, 120, 90, 20]
-						        }
-						    ]
-						}
-				        );
-					}
-				);
-				$(window).resize(function(){
-					myChart.resize();
-				})
-			});
-		<?php echo '</script'; ?>
->
 	</body>
 </html>
 <?php }

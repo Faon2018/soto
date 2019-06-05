@@ -6,7 +6,7 @@
 </style>
 <{/block}>
 <{block name=body}>
-<div id="table_data">
+<div id="table_data" style="width: 200px">
 <button type="button" class="btn btn-default btn-lg" v-on:click="addNew()">
     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add
 </button>
@@ -43,41 +43,48 @@
 
     <button type="submit" class="btn btn-default">Submit</button>
 </form>
-
-    <table class="table table-hover" >
-    <tr></tr>
-    </table>
+    <table-list v-bind:table_data="tableData"  v-bind:table_title="tableTitle"></table-list>
 </div>
 <{/block}>
 <{block name=script}>
 <script src="/node_modules/axios/dist/axios.js"></script>
+
 <script type="text/javascript">
     // import axios from '/node_modules/axios';
     // Vue.prototype.$http = axios;
+    Vue.component('table-list', {
+        props: {
+            table_data:Array,
+            table_title:Array
+        },
+        template: `
+            <table class="table table-hover">
+            <tbody>
+              <tr>
+                <td v-for="title in table_title">{{title}}</td>
+              </tr>
+              <tr v-for="row in table_data">
+                <td v-for="td in row">{{td}}</td>
+              </tr>
+              <tbody>
+            </table>`,
+    });
     var obj=new Vue({
         el:'#table_data',
-        data:{
-            seen:false,
+        data: {
+            seen: false,
+            tableData: [
+                {id: 1, name: 'a', url: 'as'},
+                {id: 2, name: 'b', url: 'bs'},
+                {id: 3, name: 'c', url: 'cs'},
+            ],
+            tableTitle: ['ID', '名称', 'url'],
         },
         methods:{
             addNew:function () {
                 this.seen=!this.seen;
             }
-        }
-        // data:function () {
-        //     return{
-        //       result:
-        //           axios.post('/admin/title/getList/')
-        //         .then(function (res) {
-        //             return  res.data;
-        //         })
-        //         .catch(function (msg) {
-        //             return  msg.msg;
-        //         })
-        //     }
-        //
-        // },
-
+        },
     });
 </script>
 <{/block}>

@@ -11,7 +11,11 @@ class  TitleController extends BaseController{
 
     }
     public  function  getListAction(){
-        return  gf_ajax_success(['result'=>'success']);
+        return  gf_ajax_success([['name'=>'123','value'=>'456'],['name'=>'234','value'=>'567']]);
+    }
+
+    public  function  addNewAction(){
+
     }
 
 }
