@@ -19,11 +19,14 @@
     .glyphicon:hover{
         color: rgba(210,76,33,1);
     }
+    .main-layout{
+        float: left;
+    }
 </style>
 <body>
 <div class="main-layout" id='main-layout'>
     <!--侧边栏-->
-    <div class="main-layout-side">
+    <div class="main-layout-side" v-if="show_title">
         <div class="m-logo">
         </div>
         <ul class="layui-nav layui-nav-tree">
@@ -39,18 +42,18 @@
         </ul>
     </div>
     <!--右侧内容-->
-    <div class="main-layout-container">
+    <div class="main-layout-container" :style="{left:style_left+'px'}">
         <!--头部-->
         <div class="main-layout-header">
-            <div class="menu-btn" id="hideBtn">
+            <div class="menu-btn">
                 <a href="javascript:;">
-                    <span class="iconfont">&#xe60e;</span>
+                    <span class="iconfont" @click="is_show">&#xe60e;</span>
                 </a>
             </div>
             <ul class="layui-nav">
-                <li class="layui-nav-item"><a href="javascript:;" data-url="email.html" data-id='4' data-text="邮件系统"><i class="iconfont">&#xe603;</i></a></li>
+                <li class="layui-nav-item"><a href="javascript:;"><i class="iconfont">&#xe603;</i></a></li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;" data-url="admin-info.html" data-id='5' data-text="个人信息">超级管理员</a>
+                    <a href="javascript:;">超级管理员</a>
                 </li>
                 <li class="layui-nav-item"><a href="javascript:;">退出</a></li>
             </ul>
@@ -60,7 +63,7 @@
             <!--tab 切换-->
             <div class="layui-tab layui-tab-brief main-layout-tab" >
                 <ul class="layui-tab-title">
-                    <li class="welcome"><span :class="mianClass" @click="tabClick('main')">后台主页</span></li>
+                    <li class="welcome"><span :class="mianClass" @click="tabClick('main')|change({url:'/admin/index/welcome/'})">后台主页</span></li>
                     <li class="welcome" v-for="tab  in tabList">
                         <span :class="tab.class" @click="change(tab)|tabClick(tab.name)">{{tab.name}}管理</span>
                         <span class="glyphicon glyphicon-remove" @click="remove(tab.name)"></span>
@@ -83,12 +86,15 @@
         data:{
             index_url:'/admin/index/welcome/',
             mianClass:'layui-this',
+            show_title:true,
+            style_left:200,
             list:[
 
             ],
             tabList:[
 
             ]
+
         },
         methods:{
             change(data){
@@ -154,10 +160,19 @@
                 if (ind>-1){
                     this.tabList.splice(ind,1);
                     if (isLayui){
-                        this.tabList[this.tabList.length-1].class='layui-this';
+                        if (this.tabList.length === 0){
+                            this.mianClass ='layui-this';
+                            this.index_url='/admin/index/welcome/';
+                        }else {
+                            this.tabList[this.tabList.length-1].class='layui-this';
+                        }
                     }
                 }
 
+            },
+            is_show(){
+              this.show_title=!this.show_title;
+                this.show_title?this.style_left=200:this.style_left=0;
             },
             getTitleList(){
                 var that=this;

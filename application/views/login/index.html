@@ -1,0 +1,94 @@
+<{extends 'public/base_home.html'}>
+<{block name=title}>首页<{/block}>
+<{block name=static}>
+<style>
+    .btn-submit{
+        width: 180px;
+    }
+</style>
+<{/block}>
+<{block name=body}>
+<div class="container-fluid">
+    <div class="text-center" id="login" :style="{'padding-left':left+'px','padding-top':top+'px'}">
+        <div class="form-horizontal" role="form">
+            <div v-bind:class="[{ 'has-error': isActiveName }, 'form-group']">
+                <label for="firstname" class="col-sm-2 control-label">用户名：</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" name="username" id="firstname" placeholder="请输入用户名"  @blur="checkName()"  @focus="input('isActiveName')"  v-model="username">
+                    <div class="alert alert-danger" v-if="isActiveName">用户名有误！</div>
+                </div>
+            </div>
+            <div v-bind:class="[{ 'has-error': isActiveWord }, 'form-group']">
+                <label for="lastname" class="col-sm-2 control-label">密码：</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" name="password" id="lastname" placeholder="请输入密码"  v-on:blur="checkWord()" @focus.prevent="input('isActiveWord')"  v-model="password">
+                    <div class="alert alert-danger" v-if="isActiveWord">密码有误！</div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div >
+                    <div class="col-sm-offset-2 col-sm-1">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" v-model="check">请记住我
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div >
+                    <div class="col-sm-offset-1 col-sm-1">
+                        <div class="checkbox" >
+                            <label>
+                                <p>忘记密码?</p>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-3">
+                    <button  class="btn btn-default btn-info btn-lg btn-success btn-submit">登录</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<{/block}>
+<{block name=script}>
+    <script>
+        new  Vue({
+            el:'#login',
+            data:{
+                username:'',
+                password:'',
+                check:false,
+                isActiveName:false,
+                isActiveWord:false,
+                left:500,
+                top:300,
+            },
+            methods:{
+                checkWord(){
+                    if (this.password===''){
+                        this.isActiveWord=true;
+                    }
+                },
+                checkName(){
+                    if (this.username===''){
+                        this.isActiveName=true;
+                    }
+                },
+                input(str){
+                    if (str === 'isActiveName') {
+                        this.isActiveName=false;
+                    }
+                    if (str === 'isActiveWord') {
+                        this.isActiveWord=false;
+                    }
+                }
+
+            }
+        });
+
+    </script>
+<{/block}>

@@ -15,6 +15,18 @@ class BaseController extends Yaf_Controller_Abstract
     public $auth;
     public $isAdmin;
     public $param;
+    public $admin;
+
+//    public function init() {
+//        // inti config
+//        $conf = Yaf_Registry::get('config');
+//        $this->conf = $conf;
+//        $this->base_uri = $conf->application->baseUri;
+//        $this->getView()->assign('BASE_URI', $this->base_uri);
+//        $this->getView()->assign('username', 'faon');//测试用户
+//        // init request mode
+//        $this->is_ajax = $this->getRequest()->isXmlHttpRequest ();
+//    }
 
     public function init() {
         // inti config
@@ -22,8 +34,30 @@ class BaseController extends Yaf_Controller_Abstract
         $this->conf = $conf;
         $this->base_uri = $conf->application->baseUri;
         $this->getView()->assign('BASE_URI', $this->base_uri);
-        // init request mode
+        $this->getView()->assign('username', 'faon');//测试用户
         $this->is_ajax = $this->getRequest()->isXmlHttpRequest ();
+//        session_start();
+//        if (isset($_SESSION['admin']) && $_SESSION['admin']==true){
+//
+//        }else{
+//            $_SESSION['admin']=true;
+//            $this->getView()->disPlay('login/index.html');
+//            exit;
+//        }
+        $this->getView()->disPlay('login/index.html');
+            exit;
+//        if ($this->admin){
+//
+//
+//        }else{
+//            $this->admin=true;
+//            $this->getView()->disPlay('login/index.html');
+//            exit;
+//        }
+
+
+        // init request mode
+
     }
 
     /**
