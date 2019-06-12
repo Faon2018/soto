@@ -10,23 +10,32 @@ class LoginController extends BaseController {
 
     protected $isauth = FALSE;
 
+
     public function indexAction() {
 
     }
 
     public function doLoginAction() {
 
-        $user = $this->getPost('username');
-        $password = $this->getPost('password');
-        gf_dump($user);
-        gf_dump($password);
+        $user = $this->getPost('username','');
+        $password = $this->getPost('password','');
+        $userModel=new UserModel();
+        $result=$userModel->getByNameAndPass($user,$password);
+        if ($result['id']){
+            $this->user=$user;
+            $this->getView()->disPlay('index/index.html');
+            return  false;
+        }
+
+
+
 //        session_start();
 //        $_SESSION['admin']
 //        gf_dump($password);die;
 
-            $this->getView()->disPlay('index/index.html');
+//            $this->getView()->disPlay('index/index.html');
 //            $this->forward('index');
-            exit;
+//            exit;
 
 
 //        if ((new UserModel())->getUserInfo($user)) {

@@ -10,7 +10,7 @@
 <{block name=body}>
 <div class="container-fluid">
     <div class="text-center" id="login" :style="{'padding-left':left+'px','padding-top':top+'px'}">
-        <div class="form-horizontal" role="form">
+        <form action="/login/dologin" method="post" class="form-horizontal" role="form">
             <div v-bind:class="[{ 'has-error': isActiveName }, 'form-group']">
                 <label for="firstname" class="col-sm-2 control-label">用户名：</label>
                 <div class="col-sm-3">
@@ -47,10 +47,11 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-3">
-                    <button  class="btn btn-default btn-info btn-lg btn-success btn-submit">登录</button>
+                    <button  type="submit" class="btn btn-default btn-info btn-lg btn-success btn-submit" :disabled="dis">登录</button>
+                    <div class="alert alert-danger" v-if="submit">用户名或密码错误！</div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
 <{/block}>
@@ -64,6 +65,7 @@
                 check:false,
                 isActiveName:false,
                 isActiveWord:false,
+                submit:false,
                 left:500,
                 top:300,
             },
@@ -79,14 +81,34 @@
                     }
                 },
                 input(str){
+                    this.submit=false;
                     if (str === 'isActiveName') {
                         this.isActiveName=false;
                     }
                     if (str === 'isActiveWord') {
                         this.isActiveWord=false;
                     }
-                }
+                },
+                // doLogin(){
+                //     const that=this;
+                //     axios.post('login/doLogin',{username:that.username,password:that.password}).then(function (res) {
+                //         console.log(res.data);
+                //     }).catch(function (error) {
+                //         that.submit=true;
+                //     });
+                // }
 
+            },
+            computed:{
+                dis:function () {
+                    var  tr=true;
+                    if (this.username!==''&& this.password!==''){
+                        if (!(this.isActiveName || this.isActiveWord)){
+                            tr=false;
+                        }
+                    }
+                    return tr;
+                }
             }
         });
 

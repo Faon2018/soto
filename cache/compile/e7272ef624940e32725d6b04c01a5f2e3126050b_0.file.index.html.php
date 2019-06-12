@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2019-06-05 09:16:40
+/* Smarty version 3.1.30, created on 2019-06-06 03:39:10
   from "D:\www\yafapp\soto\application\views\admin\index\index.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5cf78878baddd1_36531245',
+  'unifunc' => 'content_5cf88ade2dc524_06847069',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e7272ef624940e32725d6b04c01a5f2e3126050b' => 
     array (
       0 => 'D:\\www\\yafapp\\soto\\application\\views\\admin\\index\\index.html',
-      1 => 1559724158,
+      1 => 1559792347,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5cf78878baddd1_36531245 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5cf88ade2dc524_06847069 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html>
@@ -43,11 +43,14 @@ function content_5cf78878baddd1_36531245 (Smarty_Internal_Template $_smarty_tpl)
     .glyphicon:hover{
         color: rgba(210,76,33,1);
     }
+    .main-layout{
+        float: left;
+    }
 </style>
 <body>
 <div class="main-layout" id='main-layout'>
     <!--侧边栏-->
-    <div class="main-layout-side">
+    <div class="main-layout-side" v-if="show_title">
         <div class="m-logo">
         </div>
         <ul class="layui-nav layui-nav-tree">
@@ -63,18 +66,18 @@ function content_5cf78878baddd1_36531245 (Smarty_Internal_Template $_smarty_tpl)
         </ul>
     </div>
     <!--右侧内容-->
-    <div class="main-layout-container">
+    <div class="main-layout-container" :style="{left:style_left+'px'}">
         <!--头部-->
         <div class="main-layout-header">
-            <div class="menu-btn" id="hideBtn">
+            <div class="menu-btn">
                 <a href="javascript:;">
-                    <span class="iconfont">&#xe60e;</span>
+                    <span class="iconfont" @click="is_show">&#xe60e;</span>
                 </a>
             </div>
             <ul class="layui-nav">
-                <li class="layui-nav-item"><a href="javascript:;" data-url="email.html" data-id='4' data-text="邮件系统"><i class="iconfont">&#xe603;</i></a></li>
+                <li class="layui-nav-item"><a href="javascript:;"><i class="iconfont">&#xe603;</i></a></li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;" data-url="admin-info.html" data-id='5' data-text="个人信息">超级管理员</a>
+                    <a href="javascript:;">超级管理员</a>
                 </li>
                 <li class="layui-nav-item"><a href="javascript:;">退出</a></li>
             </ul>
@@ -84,7 +87,7 @@ function content_5cf78878baddd1_36531245 (Smarty_Internal_Template $_smarty_tpl)
             <!--tab 切换-->
             <div class="layui-tab layui-tab-brief main-layout-tab" >
                 <ul class="layui-tab-title">
-                    <li class="welcome"><span :class="mianClass" @click="tabClick('main')">后台主页</span></li>
+                    <li class="welcome"><span :class="mianClass" @click="tabClick('main')|change({url:'/admin/index/welcome/'})">后台主页</span></li>
                     <li class="welcome" v-for="tab  in tabList">
                         <span :class="tab.class" @click="change(tab)|tabClick(tab.name)">{{tab.name}}管理</span>
                         <span class="glyphicon glyphicon-remove" @click="remove(tab.name)"></span>
@@ -112,12 +115,15 @@ function content_5cf78878baddd1_36531245 (Smarty_Internal_Template $_smarty_tpl)
         data:{
             index_url:'/admin/index/welcome/',
             mianClass:'layui-this',
+            show_title:true,
+            style_left:200,
             list:[
 
             ],
             tabList:[
 
             ]
+
         },
         methods:{
             change(data){
@@ -183,10 +189,19 @@ function content_5cf78878baddd1_36531245 (Smarty_Internal_Template $_smarty_tpl)
                 if (ind>-1){
                     this.tabList.splice(ind,1);
                     if (isLayui){
-                        this.tabList[this.tabList.length-1].class='layui-this';
+                        if (this.tabList.length === 0){
+                            this.mianClass ='layui-this';
+                            this.index_url='/admin/index/welcome/';
+                        }else {
+                            this.tabList[this.tabList.length-1].class='layui-this';
+                        }
                     }
                 }
 
+            },
+            is_show(){
+              this.show_title=!this.show_title;
+                this.show_title?this.style_left=200:this.style_left=0;
             },
             getTitleList(){
                 var that=this;

@@ -7,4 +7,7 @@
  */
 class IndexController  extends  BaseController{
 
+    public  function  addAction(){
+
+    }
 }

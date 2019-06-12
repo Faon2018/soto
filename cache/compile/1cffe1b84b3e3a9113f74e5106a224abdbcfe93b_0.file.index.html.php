@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2019-06-05 10:31:07
+/* Smarty version 3.1.30, created on 2019-06-10 09:29:29
   from "D:\www\yafapp\soto\application\views\admin\title\index.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5cf799ebcd9d67_47355853',
+  'unifunc' => 'content_5cfe22f922bae4_25873646',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1cffe1b84b3e3a9113f74e5106a224abdbcfe93b' => 
     array (
       0 => 'D:\\www\\yafapp\\soto\\application\\views\\admin\\title\\index.html',
-      1 => 1559730662,
+      1 => 1560158959,
       2 => 'file',
     ),
   ),
@@ -21,32 +21,32 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:public/base_admin.html' => 1,
   ),
 ),false)) {
-function content_5cf799ebcd9d67_47355853 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5cfe22f922bae4_25873646 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1388780295cf799ebcd4182_83002452', 'title');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_18376626205cfe22f9228468_66956303', 'title');
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_3984323445cf799ebcd5bd1_07398333', 'static');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_4801410665cfe22f9229541_68699286', 'static');
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_18139931975cf799ebcd7464_92606646', 'body');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_13505801975cfe22f922a487_47311675', 'body');
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_7152100515cf799ebcd92e6_93962291', 'script');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_9140663165cfe22f922b3e3_29552127', 'script');
 ?>
 
 <?php $_smarty_tpl->inheritance->endChild();
 $_smarty_tpl->_subTemplateRender("file:public/base_admin.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 2, false);
 }
 /* {block 'title'} */
-class Block_1388780295cf799ebcd4182_83002452 extends Smarty_Internal_Block
+class Block_18376626205cfe22f9228468_66956303 extends Smarty_Internal_Block
 {
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 ?>
@@ -55,7 +55,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 }
 /* {/block 'title'} */
 /* {block 'static'} */
-class Block_3984323445cf799ebcd5bd1_07398333 extends Smarty_Internal_Block
+class Block_4801410665cfe22f9229541_68699286 extends Smarty_Internal_Block
 {
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 ?>
@@ -68,56 +68,60 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 }
 /* {/block 'static'} */
 /* {block 'body'} */
-class Block_18139931975cf799ebcd7464_92606646 extends Smarty_Internal_Block
+class Block_13505801975cfe22f922a487_47311675 extends Smarty_Internal_Block
 {
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
-<div id="table_data" style="width: 200px">
+<div class="container-fluid">
+
+
+<div id="table_data">
 <button type="button" class="btn btn-default btn-lg" v-on:click="addNew()">
     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add
 </button>
-<form method="post" action="/admin/title/addNew/"  v-if="seen">
+<form method="get" action="/admin/title/addNew/"  v-if="seen">
 
-    <div class="form-group">
-        <label for="exampleInputEmail1">Name of title</label>
-        <input type="email" class="form-control col-lg-6" name="title" id="exampleInputEmail1" placeholder="Email">
-    </div>
+    <div class="row">
+        <div class="col-md-3">
+        <label >Name of title</label>
+            <input class="form-control" name="title" placeholder="Email">
+        </div>
 
-    <div class="form-group">
-        <label >Level</label>
-        <select  name="level" class="form-control">
-            <option>Disabled select 1</option>
-            <option>Disabled select 2</option>
-            <option>Disabled select 3</option>
-        </select>
-    </div>
-    <div class="input-group">
-      <span class="input-group-addon">
-        <input type="checkbox" aria-label="...">
-      </span>
-        <label >Parent</label>
-        <span class="input-group-addon">@</span>
-        <input type="text" class="form-control" aria-label="...">
-    </div>
 
-    <div class="form-group">
-        <label >Url</label>
-        <span class="input-group-addon">/module/controller/action/</span>
-        <input type="file"  name="url">
+        <div class="col-md-3">
+            <label >Level</label>
+            <select  name="level" class="form-control" v-model="selected_level">
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+            </select>
+        </div>
+        <div class="col-md-3" v-if="selected_level>0?true:false">
+            <label >Level</label>
+            <select  name="parent" class="form-control">
+                <option v-for="parent in  parent_data"  :value="parent.id">
+                    {{parent.name}}
+                </option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label >URL</label>
+          <input class="form-control" name="url">
+        </div>
     </div>
-
 
     <button type="submit" class="btn btn-default">Submit</button>
 </form>
     <table-list v-bind:table_data="tableData"  v-bind:table_title="tableTitle"></table-list>
+</div>
 </div>
 <?php
 }
 }
 /* {/block 'body'} */
 /* {block 'script'} */
-class Block_7152100515cf799ebcd92e6_93962291 extends Smarty_Internal_Block
+class Block_9140663165cfe22f922b3e3_29552127 extends Smarty_Internal_Block
 {
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 ?>
@@ -144,7 +148,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
               <tr v-for="row in table_data">
                 <td v-for="td in row">{{td}}</td>
               </tr>
-              <tbody>
+              </tbody>
             </table>`,
     });
     var obj=new Vue({
@@ -157,12 +161,27 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
                 {id: 3, name: 'c', url: 'cs'},
             ],
             tableTitle: ['ID', '名称', 'url'],
+            parent_data:[],
+            selected_level:0
         },
         methods:{
             addNew:function () {
                 this.seen=!this.seen;
+            },
+            getTitleList(){
+                var that=this;
+                axios.get('/admin/index/getTitleList/').then(function (res) {
+                    that.parent_data=res.data.data;
+                }).catch(function (error) {
+                    that.parent_data=[];
+                });
             }
         },
+        created:function () {
+            this.getTitleList();
+        }
+
+
     });
 <?php echo '</script'; ?>
 >
